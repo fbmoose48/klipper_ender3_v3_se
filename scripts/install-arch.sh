@@ -3,7 +3,7 @@
 
 PYTHONDIR="${HOME}/klippy-env"
 SYSTEMDDIR="/etc/systemd/system"
-AURCLIENT="pamac"
+AURCLIENT="yay"
 KLIPPER_USER=$USER
 KLIPPER_GROUP=$KLIPPER_USER
 
@@ -11,7 +11,7 @@ KLIPPER_GROUP=$KLIPPER_USER
 install_packages()
 {
     # Packages for python cffi
-    PKGLIST="python2-virtualenv libffi base-devel"
+    PKGLIST="python-virtualenv libffi base-devel"
     # kconfig requirements
     PKGLIST="${PKGLIST} ncurses"
     # hub-ctrl
@@ -35,7 +35,7 @@ create_virtualenv()
     report_status "Updating python virtual environment..."
 
     # Create virtualenv if it doesn't already exist
-    [ ! -d ${PYTHONDIR} ] && virtualenv2 ${PYTHONDIR}
+    [ ! -d ${PYTHONDIR} ] && virtualenv ${PYTHONDIR}
 
     # Install/update dependencies
     ${PYTHONDIR}/bin/pip install -r ${SRCDIR}/scripts/klippy-requirements.txt
